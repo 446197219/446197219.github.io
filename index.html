@@ -18,9 +18,45 @@
         </style>
 </head>
     <body>
-			<audio autoplay="autopaly" loop="-1">
+			<!-- <audio autoplay="autopaly" loop="-1">
 					<source src="renxi/最美的期待.mp3" type="audio/mp3" />
-			</audio>  
+			</audio>  -->
+			<div id="audioBox" > 
+<script type="text/javascript"> 
+window.onload = function(){ 
+var arr = ["backmusic/3.mp3","backmusic/2.mp3","backmusic/1.mp3"];               //把需要播放的歌曲从后往前排，这里已添加两首音乐，可继续添加多个音乐 
+var a=[];
+var i=0;
+var j=arr.length;
+for(;i<j;i++)
+{
+a[i]=arr[i];
+}
+var myAudio = new Audio(); 
+myAudio.preload = true; 
+myAudio.controls = true; 
+myAudio.src = a.pop();         //每次读数组最后一个元素 
+myAudio.addEventListener('ended', playEndedHandler, false); 
+myAudio.play(); 
+document.getElementById("audioBox").appendChild(myAudio); 
+myAudio.loop = false;//禁止循环，否则无法触发ended事件 
+function playEndedHandler(){ 
+myAudio.src = a.pop(); 
+myAudio.play(); 
+console.log(a.length); 
+if(a.length==0){
+var i=0;
+var j=arr.length;
+for(;i<j;i++)
+{
+a[i]=arr[i];
+}                            
+}
+} 
+} 
+</script> 
+</div>
+			
         <div id="main">
           
              <div id="wrap">
